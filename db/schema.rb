@@ -10,17 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_193522) do
+ActiveRecord::Schema.define(version: 2018_09_09_205235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "chapters", force: :cascade do |t|
-    t.integer "num"
+    t.integer "number"
     t.boolean "finished", default: false, null: false
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dbm_pages", force: :cascade do |t|
+    t.integer "number"
+    t.string "url"
+    t.boolean "first_page", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "chapter_id"
+    t.index ["chapter_id"], name: "index_dbm_pages_on_chapter_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,4 +45,5 @@ ActiveRecord::Schema.define(version: 2018_09_09_193522) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "dbm_pages", "chapters"
 end
