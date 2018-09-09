@@ -14,7 +14,8 @@ DbmPage.destroy_all
 chapter_64 = Chapter.create!(
   number: 64,
   finished: false,
-  url: "http://www.dragonball-multiverse.com/fr/page-1459.html"
+  title: "L'âge des Saiyans",
+  img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1459.jpg"
 )
 
 page_1482 = DbmPage.create!(
