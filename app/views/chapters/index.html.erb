@@ -5,6 +5,21 @@
 
 <p>Infos à aller chercher sur le site officiel de <a href="http://www.dragonball-multiverse.com/">Dragon Ball Multiverse</a></p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @last_chapter.img_url %>);">
+        <div class="card-description">
+          <h2><%= "#{@pages.count} pages" %></h2>
+        </div>
+        <img class="card-user" src="http://www.dragonball-multiverse.com/design/Leftbar2.jpg">
+        <a class="btn-treehouse card-button" target="_/" href=<%=@last_chapter.finished ? @pages.first.url : "#" %> ><%=@last_chapter.finished ? "GO!" : "..." %></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <li>Infos à afficher</li>
   <ul>Dernier chapitre</ul>
