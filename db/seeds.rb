@@ -11,6 +11,14 @@ puts "Simulation au 9 septembre"
 Chapter.destroy_all
 DbmPage.destroy_all
 
+
+# chapter_63 = Chapter.create!(
+#   number: 63,
+#   finished: false,
+#   title: "bough",
+#   img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1459.jpg"
+# )
+
 chapter_64 = Chapter.create!(
   number: 64,
   finished: false,
