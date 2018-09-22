@@ -7,24 +7,23 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @last_chapter.img_url %>);">
+    <div class="col-xs-12 col-sm-6">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @finished_chapter.img_url %>);">
         <div class="card-description">
-          <h2><%= "#{@pages.count} pages" %></h2>
+          <h2><%= "#{@finished_chapter.pages.count} pages" %></h2>
         </div>
         <img class="card-user" src="http://www.dragonball-multiverse.com/design/Leftbar2.jpg">
-        <a class="btn-treehouse card-button" target="_/" href=<%=@last_chapter.finished ? @pages.first.url : "#" %> ><%=@last_chapter.finished ? "GO!" : "..." %></a>
+        <a class="btn-treehouse card-button" target="_/" href=<%=@finished_chapter.button_link %> ><%= @finished_chapter.button_text %></a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @unfinished_chapter.img_url %>);">
+        <div class="card-description">
+          <h2><%= "#{@unfinished_chapter.pages.count} pages" %></h2>
+        </div>
+        <img class="card-user" src="http://www.dragonball-multiverse.com/design/Leftbar2.jpg">
+        <a class="btn-treehouse card-button" target="_/" href= <%=@unfinished_chapter.button_link %> ><%= @unfinished_chapter.button_text %></a>
       </div>
     </div>
   </div>
 </div>
-
-
-
-<li>Infos à afficher</li>
-  <ul>Dernier chapitre</ul>
-  <ul>Titre chapitre</ul>
-  <ul>Photo chapitre</ul>
-  <ul>Nb de pages à lire</ul>
-  <ul>Chapitre terminé (chgmt classe)</ul>
-</li>
