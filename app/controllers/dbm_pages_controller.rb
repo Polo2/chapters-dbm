@@ -1,12 +1,6 @@
 class DbmPagesController < ApplicationController
 skip_before_action :authenticate_user!
 
-  def index
-  end
-
-  def show
-  end
-
   def new
   end
 
@@ -17,8 +11,5 @@ skip_before_action :authenticate_user!
   end
 
   def update
-  end
-
-  def destroy
   end
 end
