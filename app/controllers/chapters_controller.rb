@@ -2,9 +2,8 @@ class ChaptersController < ApplicationController
 skip_before_action :authenticate_user!
 
   def index
-    @chapters = Chapter.all
-    @last_chapter = @chapters.last
-    @pages = @last_chapter.dbm_pages.sort_by{ |p| p.number }
+    @finished_chapter = Chapter.where(finished: true).last_chapter
+    @unfinished_chapter = Chapter.where(finished: false).last_chapter
   end
 
   def new
