@@ -6,30 +6,63 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Simulation au 22 septembre"
+puts "Scrap au 22 septembre"
 
 Chapter.destroy_all
 DbmPage.destroy_all
 
+def create_chapter(params)
+  Chapter.create!(params)
+end
 
-chapter_63 = Chapter.create!(
-  number: 63,
-  finished: true,
-  title: "budokai 2",
+def create_page(params)
+end
+
+def initialize_elements(url)
+  html_file = open(url).read
+  html_doc = Nokogiri::HTML(html_file)
+  @elements = html_doc.search('.chapters')
+  return "initialize : done"
+end
+
+puts "Get all DBM chapters"
+puts "22 septembre"
+
+dbm_url = "http://www.dragonball-multiverse.com/fr/chapters.html"
+
+initialize_elements(dbm_url)
+@chapter_attributes = []
+
+Chapter.destroy_all
+DbmPage.destroy_all
+
+# HINT : method whom element is parameter , easier for edge case
+@chapter_attributes = @elements.map do |e|
+  number = e.attribute('ch').value.to_i unless e.attribute('ch').nil?
+  title = e.css('h4')[0].text unless e.css('h4')[0].nil?
+  create_chapter( number: number, title: title, finished: true ) unless number.nil? || title.nil?
+end.compact
+
+
+
+chapter_63 = Chapter.where(number: 63).first
+chapter_63.update!(
   img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1434.jpg"
 )
 
+# HACK : img urls
+chapter_64 = Chapter.where(number: 64).first
+
+chapter_64.update!(
+  finished: false,
+  img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1459.jpg",
+)
+
+# HACK : 2 pages
 page_1437 = DbmPage.create!(
   number: 1437,
   url: "http://www.dragonball-multiverse.com/fr/page-1437.html",
   chapter: chapter_63
-)
-
-chapter_64 = Chapter.create!(
-  number: 64,
-  finished: false,
-  title: "L'âge des Saiyans",
-  img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1459.jpg"
 )
 
 page_1482 = DbmPage.create!(
@@ -38,5 +71,5 @@ page_1482 = DbmPage.create!(
   chapter: chapter_64
 )
 
-puts "#{Chapter.count} chapter created"
-puts "#{DbmPage.count} page created"
+puts "#{Chapter.count} chapitre créés"
+puts "#{DbmPage.count} pages créées"
