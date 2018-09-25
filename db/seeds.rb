@@ -1,18 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-puts "Scrap au 22 septembre"
-
-Chapter.destroy_all
-DbmPage.destroy_all
-
-def create_chapter(params)
-  Chapter.create!(params)
+def create_related_chapter(element)
+  number = element.attribute('ch').value.to_i
+  title = element.css('h4')[0].text
+  Chapter.create!( number: number, title: title, finished: true )
 end
 
 def create_page(params)
@@ -26,23 +16,16 @@ def initialize_elements(url)
 end
 
 puts "Get all DBM chapters"
-puts "22 septembre"
+puts "25 septembre"
 
 dbm_url = "http://www.dragonball-multiverse.com/fr/chapters.html"
 
 initialize_elements(dbm_url)
-@chapter_attributes = []
 
 Chapter.destroy_all
 DbmPage.destroy_all
 
-# HINT : method whom element is parameter , easier for edge case
-@chapter_attributes = @elements.map do |e|
-  number = e.attribute('ch').value.to_i unless e.attribute('ch').nil?
-  title = e.css('h4')[0].text unless e.css('h4')[0].nil?
-  create_chapter( number: number, title: title, finished: true ) unless number.nil? || title.nil?
-end.compact
-
+@elements.each { |e| create_related_chapter(e) unless e.attribute('ch').nil? }
 
 
 chapter_63 = Chapter.where(number: 63).first
