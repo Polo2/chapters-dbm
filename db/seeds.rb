@@ -40,7 +40,6 @@ DbmPage.destroy_all
       chapter: chapter,
     ) unless item.text.empty?
   end unless chapter.nil?
-
 end
 
 # # HACK : img urls
