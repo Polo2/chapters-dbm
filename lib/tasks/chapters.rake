@@ -15,6 +15,7 @@ namespace :chapters do
     end
 
     # Scrap elements on DBM webpage
+
     dbm_url_chapters = "http://www.dragonball-multiverse.com/fr/chapters.html"
     initialize_elements(dbm_url_chapters)
     element = @elements.last
@@ -22,6 +23,7 @@ namespace :chapters do
     chap_number = element.attribute('ch').value.to_i
     chap_title = element.css('h4')[0].text
     page_number = element.css('a').last.text.to_i
+    cover_img_url = "http://www.dragonball-multiverse.com/fr/pages/final/#{page_number}.jpg"
 
 
     # creation under condition
@@ -42,6 +44,7 @@ namespace :chapters do
           number: chap_number,
           title: chap_title,
           finished: false,
+          img_url: cover_img_url,
         )
         DbmPage.create!(
           number: page_number,
