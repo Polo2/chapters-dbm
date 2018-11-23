@@ -17,6 +17,10 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
+gem 'rack', '>= 2.0.6'
+gem 'loofah', '>= 2.2.3'
+
+
 group :development do
   gem 'web-console', '>= 3.3.0'
 end
