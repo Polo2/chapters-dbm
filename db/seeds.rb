@@ -22,11 +22,9 @@ def initialize_elements(url)
 end
 
 puts "Get all DBM chapters"
-puts "25 septembre"
+puts "29 septembre 2019"
 
-dbm_url_chapters = "http://www.dragonball-multiverse.com/fr/chapters.html"
-
-initialize_elements(dbm_url_chapters)
+initialize_elements(Chapter::CHAPTERS_URL)
 
 Chapter.destroy_all
 DbmPage.destroy_all
@@ -42,16 +40,14 @@ DbmPage.destroy_all
   end unless chapter.nil?
 end
 
-# # HACK : img urls
-chapter_64 = Chapter.where(number: 64).first
-chapter_64.update!(
-  img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1459.jpg"
-)
-chapter_65 = Chapter.where(number: 65).first
-chapter_65.update!(
-  finished: false,
-  img_url: "http://www.dragonball-multiverse.com/fr/pages/final/1488.jpg",
-)
+chapter_left = Chapter.all[-2]
+chapter_right = Chapter.all[-1]
+
+[chapter_left, chapter_right].each do |chapter|
+  chapter.update!(img_url: chapter.cover_url)
+end
+
+chapter_right.update!(finished: false)
 
 puts "#{Chapter.count} chapitre créés"
 puts "#{DbmPage.count} pages créées"
