@@ -2,9 +2,8 @@ require "open-uri"
 require "yaml"
 
 namespace :chapters do
-  desc 'A description for the task'
+  desc "Looking for last page"
   task update: :environment do
-
 
     def initialize_elements(url)
       html_file = open(url).read
@@ -15,9 +14,7 @@ namespace :chapters do
     end
 
     # Scrap elements on DBM webpage
-
-    dbm_url_chapters = "http://www.dragonball-multiverse.com/fr/chapters.html"
-    initialize_elements(dbm_url_chapters)
+    initialize_elements("http://www.dragonball-multiverse.com/fr/chapters.html")
     element = @elements.last
 
     chap_number = element.attribute('ch').value.to_i
