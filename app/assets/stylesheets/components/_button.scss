@@ -28,4 +28,21 @@
   color: #e41a1a;
 }
 
+.button_dbm {
+  padding: 16px 24px;
+  background-color: #773e38;
+  color: #ffc60f;
+  font-weight: bold;
+  display: inline-block;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    text-decoration: none;
+    background-color: #f23314;
+    color: #ffff63;
+    box-shadow: 0 0 80px 80px #ffff63;
+  }
+}
+
 /* Build your own button classes ! */
