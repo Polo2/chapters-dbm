@@ -1,36 +1,31 @@
-<div class="container">
-  <div class="row">
-    <h1>Attendre pour lire un chapitre complet</h1>
-    <p><a href="http://www.dragonball-multiverse.com/">Dragon Ball Multiverse</a></p>
-    <div class="col-xs-12 col-sm-6">
-      <p>A gauche, le dernier chapitre complet</p>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <p>A droite, le chapitre en cours</p>
-    </div>
-    <p>Je patiente pour toi ;)</p>
+<div class="container text-align-center">
+  <div class="header">
+    <h1>Dragon Ball Multiverse, DBZ vu par les fans</h1>
+    <a class="button_dbm" href="http://www.dragonball-multiverse.com/" target="_/"><%= DbmPage.count %> pages en ligne</a>
+    <h2>Difficile d'attendre le chapitre terminé ?</h2>
   </div>
-</div>
 
-<div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @finished_chapter.img_url %>);">
+      <p>Ici, le dernier chapitre complet</p>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url(<%= @finished_chapter.img_url %>);">
         <div class="card-description">
-          <h2><%= "#{@finished_chapter.pages.count} pages" %></h2>
+          <p><%= "#{@finished_chapter.pages.count} pages" %></p>
         </div>
-        <img class="card-user" src="http://www.dragonball-multiverse.com/design/Leftbar2.jpg">
-        <a class="btn-treehouse card-button" target="_/" href=<%=@finished_chapter.button_link %> ><%= @finished_chapter.button_text %></a>
+        <a class="button_dbm card-button" target="_/" href=<%=@finished_chapter.button_link %> ><%= @finished_chapter.button_text %></a>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= @unfinished_chapter.img_url %>);">
+      <p>Et là, le chapitre en cours</p>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.2)), url(<%= @unfinished_chapter.img_url %>);">
         <div class="card-description">
-          <h2><%= "#{@unfinished_chapter.pages.count} pages" %></h2>
+          <p><%= "#{@unfinished_chapter.pages.count} pages" %></p>
         </div>
-        <img class="card-user" src="http://www.dragonball-multiverse.com/design/Leftbar2.jpg">
-        <a class="btn-treehouse card-button" target="_/" href= <%=@unfinished_chapter.button_link %> ><%= @unfinished_chapter.button_text %></a>
+        <a class="button_dbm card-button" target="_/" href= <%=@unfinished_chapter.button_link %> ><%= @unfinished_chapter.button_text %></a>
       </div>
     </div>
+  </div>
+  <div class="page-subtitle">
+    <h2>Ce site patiente pour toi &#9203;</h2>
   </div>
 </div>
