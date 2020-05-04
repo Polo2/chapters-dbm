@@ -20,7 +20,7 @@ gem 'puma', '>= 3.12.4'
 gem 'loofah', '>= 2.2.3'
 gem 'nokogiri', '>= 1.10.9'
 gem 'simple_form', '>=5.0'
-
+gem "yaml"
 
 group :development do
   gem 'web-console', '>= 3.3.0'

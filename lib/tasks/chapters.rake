@@ -1,6 +1,3 @@
-require "open-uri"
-require "yaml"
-
 namespace :chapters do
   desc "Looking for last page"
   task update: :environment do
